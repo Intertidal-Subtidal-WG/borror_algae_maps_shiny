@@ -32,7 +32,7 @@ basemap <- leaflet() %>%
 
 #some color
 algae_pal <- colorFactor("viridis", 
-                         shapes_cleaned$species_general)
+                         domain = shapes_cleaned$species_general)
 
 
 # Define UI for application that draws a histogram
@@ -82,9 +82,16 @@ server <- function(input, output) {
         input$species_input}, {
         leafletProxy("mymap") %>%
             clearShapes() %>%
+            clearControls() %>%
             addPolygons(data = shapes_dat(),
                         fillOpacity = 0.2,
-                        color = ~algae_pal(species_general))
+                        color = ~algae_pal(shapes_dat()$species_general)) %>%
+                addLegend("topright", 
+                          pal = algae_pal, 
+                          values = shapes_dat()$species_general,
+                          title = "Canopy Species",
+                          opacity = 1
+                )
     },
     ignoreInit = TRUE)
 }
