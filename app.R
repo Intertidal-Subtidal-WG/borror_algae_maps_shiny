@@ -14,8 +14,6 @@ library(dplyr)
 library(glue)
 setwd(here::here())
 
-print(list.files("figures"))
-
 if(!require(shinythemes)) install.packages("shinythemes", repos = "http://cran.us.r-project.org")
 if(!require(shinyWidgets)) install.packages("shinyWidgets", repos = "http://cran.us.r-project.org")
 if(!require(ricv)) remotes::install_github("xvrdm/ricv")
@@ -85,60 +83,110 @@ algae_pal <- colorFactor(palette = colors$color,
 group_pal <- colorFactor(c("darkgreen", "darkmagenta", "red", "grey"),
                          levels = sort(unique(kelps_reds_barrens$dominant_cover)))
 
-# Define UI for application 
+
+# Define UI for application
 ui <- navbarPage(
-    title  = "Maps of Subtidal Algal Canopy Over Time at SML",
-    theme = shinytheme("journal"),
-    tabPanel("All Species",
-     fluidRow(column(12, 
-        leafletOutput("mymap", height = "1000"),
-        
-        absolutePanel(id = "controls", class = "panel panel-default",
-                      top = 90, left = 65, width = 250, fixed=TRUE,
-                      draggable = TRUE, height = "auto",
-                      
-                      checkboxGroupInput("species_input",
-                                         label = h5("Select species shown"),
-                                         choices = sort(unique(shapes_cleaned$species_general))
-                      ),
-                      
-                      sliderTextInput("plot_date",
-                                      label = h5("Select year"),
-                                      choices = sort(unique(shapes_cleaned$year)),
-                                      selected = init_year,
-                                      grid = FALSE,
-                                      animate=animationOptions(interval = 3000, loop = TRUE)))
-    ))),
-    
-    tabPanel("Taxonomically Grouped",
-             fluidRow(column(12, 
-                             leafletOutput("group_mymap", height = "1000"),
-                             
-                             absolutePanel(id = "controls", class = "panel panel-default",
-                                           top = 90, left = 65, width = 250, fixed=TRUE,
-                                           draggable = TRUE, height = "auto",
-                                           
-                                           checkboxGroupInput("group_input",
-                                                              label = h5("Select species shown"),
-                                                              choices = sort(unique(kelps_reds_barrens$dominant_cover))
-                                           ),
-                                           
-                                           sliderTextInput("group_plot_date",
-                                                           label = h5("Select year"),
-                                                           choices = sort(unique(kelps_reds_barrens$year)),
-                                                           selected = init_year,
-                                                           grid = FALSE,
-                                                           animate=animationOptions(interval = 3000, loop = TRUE)))
-             ))),
-    tabPanel("About",
-             HTML("These are digital renderings of maps of the dominant subtidal
+  title  = "Maps of Subtidal Algal Canopy Over Time at SML",
+  theme = shinytheme("journal"),
+  tabPanel("All Species",
+           fluidRow(
+             column(
+               12,
+               leafletOutput("mymap", height = "1000"),
+               
+               absolutePanel(
+                 id = "controls",
+                 class = "panel panel-default",
+                 top = 90,
+                 left = 65,
+                 width = 250,
+                 fixed = TRUE,
+                 draggable = TRUE,
+                 height = "auto",
+                 
+                 checkboxGroupInput(
+                   "species_input",
+                   label = h5("Select species shown"),
+                   choices = sort(unique(shapes_cleaned$species_general))
+                 ),
+                 
+                 sliderTextInput(
+                   "plot_date",
+                   label = h5("Select year"),
+                   choices = sort(unique(shapes_cleaned$year)),
+                   selected = init_year,
+                   grid = FALSE,
+                   animate = animationOptions(interval = 3000, loop = TRUE)
+                 )
+               )
+             )
+           )),
+  
+  tabPanel("Taxonomically Grouped",
+           fluidRow(
+             column(
+               12,
+               leafletOutput("group_mymap", height = "1000"),
+               
+               absolutePanel(
+                 id = "controls",
+                 class = "panel panel-default",
+                 top = 90,
+                 left = 65,
+                 width = 250,
+                 fixed = TRUE,
+                 draggable = TRUE,
+                 height = "auto",
+                 
+                 checkboxGroupInput(
+                   "group_input",
+                   label = h5("Select species shown"),
+                   choices = sort(unique(kelps_reds_barrens$dominant_cover))
+                 ),
+                 
+                 sliderTextInput(
+                   "group_plot_date",
+                   label = h5("Select year"),
+                   choices = sort(unique(kelps_reds_barrens$year)),
+                   selected = init_year,
+                   grid = FALSE,
+                   animate = animationOptions(interval = 3000, loop = TRUE)
+                 )
+               )
+             )
+           )),
+  
+  # ricv did not work....
+  #   # let's do some year-to year image comparison
+  #         tabPanel("Compare Years",
+  #              sidebarLayout(
+  #                sidebarPanel(width=2,
+  #                             radioButtons(inputId = "start_year",
+  #                                          "Start Year",
+  #                                          choices = years[!is.na(years)],
+  #                                          selected = 1982),
+  #
+  #                             radioButtons(inputId = "end_year",
+  #                                          "End Year",
+  #                                          choices = years[!is.na(years)],
+  #                                          selected = 2014)
+  #                             ),
+  #                mainPanel(
+  #                  ricvOutput("compare_years")
+  #                )
+  #              )
+  #         ),
+  tabPanel(
+    "About",
+    HTML(
+      "These are digital renderings of maps of the dominant subtidal
                   habitat structure in the shallow subtidal (1-5m depth) around Appledore
                   Islands in the Isles of Shoals, Maine, USA. These renderings were derived
-                  from surveys by Dr. Art Borror (1982-1990) and later Drs. Jim Coyer and Jarrett 
-                  Byrnes (2014) while at the Shoals Marine Lab by taking a boat around the island 
+                  from surveys by Dr. Art Borror (1982-1990) and later Drs. Jim Coyer and Jarrett
+                  Byrnes (2014) while at the Shoals Marine Lab by taking a boat around the island
                   at low tide and visually
                   examining the habitats through a bathyscope. <br><br> The maps were
-                  georeferenced and digitized by Kate Sheridan, Andrea Brown, and Tianna 
+                  georeferenced and digitized by Kate Sheridan, Andrea Brown, and Tianna
                   Peller. Jake Lawlor and Jarrett Byrnes then took the resulting shapefiles and
                   cropped and aggregated the information into the maps shown here. For any
                   additional questions contact <a href=mailto:jarrett.byrnes@umb.edu>Jarrett Byrnes</a><br><br>
@@ -146,27 +194,9 @@ ui <- navbarPage(
                   <center><img src='logos/ciee.jpg'>
                   <img src='logos/Isle_of_Shoals_Marine_Logo.jpg'>
                   <img src='logos/neracoos.png'>
-                  </center> -->"))
-# ricv did not work....
-#   # let's do some year-to year image comparison  
-#         tabPanel("Compare Years",
-#              sidebarLayout(
-#                sidebarPanel(width=2,
-#                             radioButtons(inputId = "start_year",
-#                                          "Start Year",
-#                                          choices = years[!is.na(years)],
-#                                          selected = 1982),
-#                             
-#                             radioButtons(inputId = "end_year",
-#                                          "End Year",
-#                                          choices = years[!is.na(years)],
-#                                          selected = 2014)
-#                             ),
-#                mainPanel(
-#                  ricvOutput("compare_years")
-#                )
-#              )
-#         )
+                  </center> -->"
+    )
+  )
 )
 
 # Define server logic required to draw a histogram
