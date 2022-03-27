@@ -128,6 +128,27 @@ ui <- navbarPage(
                                                            grid = FALSE,
                                                            animate=animationOptions(interval = 3000, loop = TRUE)))
              ))),
+
+    # #ricv did not work....
+    #   # let's do some year-to year image comparison
+    #         tabPanel("Compare Years",
+    #              sidebarLayout(
+    #                sidebarPanel(width=2,
+    #                             radioButtons(inputId = "start_year",
+    #                                          "Start Year",
+    #                                          choices = years[!is.na(years)],
+    #                                          selected = 1982),
+    # 
+    #                             radioButtons(inputId = "end_year",
+    #                                          "End Year",
+    #                                          choices = years[!is.na(years)],
+    #                                          selected = 2014)
+    #                             ),
+    #                mainPanel(
+    #                  ricvOutput("compare_years")
+    #                )
+    #              )
+    #         )
     tabPanel("About",
              HTML("These are digital renderings of maps of the dominant subtidal
                   habitat structure in the shallow subtidal (1-5m depth) around Appledore
@@ -145,26 +166,6 @@ ui <- navbarPage(
                   <img src='logos/Isle_of_Shoals_Marine_Logo.jpg'>
                   <img src='logos/neracoos.png'>
                   </center> -->"))
-    # ricv did not work....
-    #   # let's do some year-to year image comparison  
-    #         tabPanel("Compare Years",
-    #              sidebarLayout(
-    #                sidebarPanel(width=2,
-    #                             radioButtons(inputId = "start_year",
-    #                                          "Start Year",
-    #                                          choices = years[!is.na(years)],
-    #                                          selected = 1982),
-    #                             
-    #                             radioButtons(inputId = "end_year",
-    #                                          "End Year",
-    #                                          choices = years[!is.na(years)],
-    #                                          selected = 2014)
-    #                             ),
-    #                mainPanel(
-    #                  ricvOutput("compare_years")
-    #                )
-    #              )
-    #         )
 )
 
 # Define server logic required to draw a histogram
