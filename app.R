@@ -164,7 +164,9 @@ ui <- navbarPage(
                   <center><img src='logos/ciee.jpg'>
                   <img src='logos/Isle_of_Shoals_Marine_Logo.jpg'>
                   <img src='logos/neracoos.png'>
-                  </center> -->"))
+                  </center> -->"),
+           
+           )
 )
 
 # Define server logic required to draw a histogram
