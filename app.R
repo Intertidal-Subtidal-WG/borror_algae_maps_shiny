@@ -130,25 +130,25 @@ ui <- navbarPage(
            ))),
   
   # #ricv did not work....
-  #   # let's do some year-to year image comparison
-  #         tabPanel("Compare Years",
-  #              sidebarLayout(
-  #                sidebarPanel(width=2,
-  #                             radioButtons(inputId = "start_year",
-  #                                          "Start Year",
-  #                                          choices = years[!is.na(years)],
-  #                                          selected = 1982),
-  # 
-  #                             radioButtons(inputId = "end_year",
-  #                                          "End Year",
-  #                                          choices = years[!is.na(years)],
-  #                                          selected = 2014)
-  #                             ),
-  #                mainPanel(
-  #                  ricvOutput("compare_years")
-  #                )
-  #              )
-  #         )
+    # let's do some year-to year image comparison
+          tabPanel("Compare Years",
+               sidebarLayout(
+                 sidebarPanel(width=2,
+                              radioButtons(inputId = "start_year",
+                                           "Start Year",
+                                           choices = years[!is.na(years)],
+                                           selected = 1982),
+
+                              radioButtons(inputId = "end_year",
+                                           "End Year",
+                                           choices = years[!is.na(years)],
+                                           selected = 2014)
+                              ),
+                 mainPanel(
+                   ricvOutput("compare_years")
+                 )
+               )
+          ),
   tabPanel("About",
            HTML("These are digital renderings of maps of the dominant subtidal
                   habitat structure in the shallow subtidal (1-5m depth) around Appledore
@@ -161,11 +161,11 @@ ui <- navbarPage(
                   Peller. Jake Lawlor and Jarrett Byrnes then took the resulting shapefiles and
                   cropped and aggregated the information into the maps shown here. For any
                   additional questions contact <a href=mailto:jarrett.byrnes@umb.edu>Jarrett Byrnes</a><br><br>
-                  <!--
+                  
                   <center><img src='logos/ciee.jpg'>
                   <img src='logos/Isle_of_Shoals_Marine_Logo.jpg'>
                   <img src='logos/neracoos.png'>
-                  </center> -->"))
+                  </center> "))
 )
 
 # Define server logic required to draw a histogram
@@ -228,16 +228,14 @@ server <- function(input, output) {
   
   
   # comparing years
-  output$compare_years <- renderRicv(
+  output$compare_years <- renderRicv({
     ricv(
       img1 = glue("figures/{input$start_year}.jpg"),
       img2 = glue("figures/{input$end_year}.jpg"),
-      options = list(showLabels = FALSE),
-      css = list(both = "padding: 40px;", 
-                 before = "font-size: 2rem;", 
-                 after = "font-size: 4rem; font-family: serif;")
+      options = list(addCircle = T, hoverStart = T)
     )
-  )
+    })
+  
   
   
 }
