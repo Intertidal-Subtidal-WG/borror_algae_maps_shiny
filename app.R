@@ -1,10 +1,11 @@
-#'---------------------------------------------
-#' Shiny App for Notes from the Past Show How Local 
-#' Variability can Stymie Urchins and the Rise of the Reds in the Gulf of Maine
-#' 
-#' @author Jarrett Byrnes
-#' See about section of app for more info
-#'---------------------------------------------
+#
+# This is a Shiny web application. You can run the application by clicking
+# the 'Run App' button above.
+#
+# Find out more about building applications with Shiny here:
+#
+#    http://shiny.rstudio.com/
+#
 
 library(shiny)
 library(leaflet)
@@ -18,7 +19,6 @@ if(!require(shinyWidgets)) install.packages("shinyWidgets", repos = "http://cran
 if(!require(ricv)) remotes::install_github("xvrdm/ricv")
 
 # The Data
-#load("spp_shapes_cleaned.Rds")
 load("island_perimeter_segments.rds")
 shapes_cleaned <- st_as_sf(#shapes_cleaned,
   df %>% ungroup(),
