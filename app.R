@@ -158,7 +158,9 @@ ui <- navbarPage(
                   georeferenced and digitized by Kate Sheridan, Andrea Brown, and Tianna 
                   Peller. Jake Lawlor and Jarrett Byrnes then took the resulting shapefiles and
                   cropped and aggregated the information into the maps shown here. For any
-                  additional questions contact <a href=mailto:jarrett.byrnes@umb.edu>Jarrett Byrnes</a><br><br>
+                  additional questions contact <a href=mailto:jarrett.byrnes@umb.edu>Jarrett Byrnes</a>.
+                  To see the underlying code, go to <a href=https://github.com/Intertidal-Subtidal-WG/borror_algae_maps_shiny>
+                  this repository</a>.<br><br>
                   
                   <center><img src='logos/ciee.jpg'>
                   <img src='logos/Isle_of_Shoals_Marine_Logo.jpg'>
