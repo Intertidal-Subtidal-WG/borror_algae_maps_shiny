@@ -143,7 +143,10 @@ ui <- navbarPage(
                                        selected = 2014)
              ),
              mainPanel(
-               ricvOutput("compare_years", width = "100%", height = "100%")
+               ricvOutput("compare_years", 
+                          width = "800px", 
+                          height = "600px"
+                          )
              )
            )
   ),

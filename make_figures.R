@@ -1,5 +1,6 @@
 library(sf)
 library(ggplot2)
+setwd(here::here())
 
 # The Data
 #load("spp_shapes_cleaned.Rds")
@@ -35,12 +36,13 @@ for(i in unique(shapes_cleaned$year)) {
     scale_color_manual(breaks = colors$species_general,
                        values = colors$color) +
     theme_void() +
-    guides(color = "none")
+    labs(color = "")
   
-  ggsave(glue::glue("figures/{i}.jpg"), dpi = 600, bg = "white")
+  ggsave(glue::glue("www/figures/{i}.jpg"), dpi = 300, bg = "white",
+         width = 800, height = 600, units = "px")
 }
 
 
 library(ricv)
-ricv(img1 = "figures/1983.jpg", img2 = "figures/2014.jpg",
+ricv(img1 = "www/figures/1983.jpg", img2 = "www/figures/2014.jpg",
      options = list(addCircle = T, hoverStart = T))
