@@ -1,11 +1,10 @@
-#
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
+#'---------------------------------------------
+#' Shiny App for Notes from the Past Show How Local 
+#' Variability can Stymie Urchins and the Rise of the Reds in the Gulf of Maine
+#' 
+#' @author Jarrett Byrnes
+#' See about section of app for more info
+#'---------------------------------------------
 
 library(shiny)
 library(leaflet)
