@@ -143,7 +143,7 @@ ui <- navbarPage(
                                        selected = 2014)
              ),
              mainPanel(
-               ricvOutput("compare_years")
+               ricvOutput("compare_years", width = "100%", height = "100%")
              )
            )
   ),
@@ -230,7 +230,8 @@ server <- function(input, output) {
     ricv(
       img1 = glue("figures/{input$start_year}.jpg"),
       img2 = glue("figures/{input$end_year}.jpg"),
-      options = list(addCircle = T, hoverStart = T)
+      options = list(addCircle = T, hoverStart = T),
+      css = list(both = "height:100%; width:100%")
     )
   })
   
