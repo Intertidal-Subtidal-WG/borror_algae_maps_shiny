@@ -232,8 +232,7 @@ server <- function(input, output) {
     ricv(
       img1 = glue("figures/{input$start_year}.jpg"),
       img2 = glue("figures/{input$end_year}.jpg"),
-      options = list(addCircle = T, hoverStart = T),
-      css = list(both = "height:100%; width:100%")
+      options = list(addCircle = T, hoverStart = T, fluidMode=T)
     )
   })
   
