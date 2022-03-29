@@ -34,12 +34,14 @@ for(i in unique(shapes_cleaned$year)) {
          aes(color = species_general)) +
     geom_sf(size = 3) +
     scale_color_manual(breaks = colors$species_general,
-                       values = colors$color) +
+                       values = colors$color,
+                       limits = colors$species_general) +
     theme_void() +
-    labs(color = "")
+    labs(color = "") +
+    theme(legend.key.size = unit(0.3, 'cm'))
   
-  ggsave(glue::glue("www/figures/{i}.jpg"), dpi = 300, bg = "white",
-         width = 800, height = 600, units = "px")
+  ggsave(glue::glue("www/figures/{i}.jpg"), bg = "white",
+         width = 800, height = 600, units = "px", dpi = 200)
 }
 
 
