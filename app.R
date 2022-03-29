@@ -134,12 +134,12 @@ ui <- navbarPage(
              sidebarPanel(width=2,
                           radioButtons(inputId = "start_year",
                                        "Start Year",
-                                       choices = years[!is.na(years)],
+                                       choices = sort(unique(shapes_cleaned$year)),
                                        selected = 1982),
                           
                           radioButtons(inputId = "end_year",
                                        "End Year",
-                                       choices = years[!is.na(years)],
+                                       choices = sort(unique(shapes_cleaned$year)),
                                        selected = 2014)
              ),
              mainPanel(
