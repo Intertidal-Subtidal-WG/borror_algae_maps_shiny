@@ -127,29 +127,29 @@ ui <- navbarPage(
                                                          animate=animationOptions(interval = 3000, loop = TRUE)))
            ))),
   
-  # #ricv did not work....
-  # let's do some year-to year image comparison
-  tabPanel("Compare Years",
-           sidebarLayout(
-             sidebarPanel(width=2,
-                          radioButtons(inputId = "start_year",
-                                       "Start Year",
-                                       choices = sort(unique(shapes_cleaned$year)),
-                                       selected = 1982),
-                          
-                          radioButtons(inputId = "end_year",
-                                       "End Year",
-                                       choices = sort(unique(shapes_cleaned$year)),
-                                       selected = 2014)
-             ),
-             mainPanel(
-               ricvOutput("compare_years", 
-                          width = "800px", 
-                          height = "600px"
-                          )
-             )
-           )
-  ),
+  # # #ricv did not work....
+  # # let's do some year-to year image comparison
+  # tabPanel("Compare Years",
+  #          sidebarLayout(
+  #            sidebarPanel(width=2,
+  #                         radioButtons(inputId = "start_year",
+  #                                      "Start Year",
+  #                                      choices = sort(unique(shapes_cleaned$year)),
+  #                                      selected = 1982),
+  #                         
+  #                         radioButtons(inputId = "end_year",
+  #                                      "End Year",
+  #                                      choices = sort(unique(shapes_cleaned$year)),
+  #                                      selected = 2014)
+  #            ),
+  #            mainPanel(
+  #              ricvOutput("compare_years", 
+  #                         width = "800px", 
+  #                         height = "600px"
+  #                         )
+  #            )
+  #          )
+  # ),
   tabPanel("About",
            HTML("These are digital renderings of maps of the dominant subtidal
                   habitat structure in the shallow subtidal (1-5m depth) around Appledore
