@@ -9,7 +9,7 @@ The app is currently available at https://shiny.umb.edu/shiny/users/jarrett.byrn
 
 To run the app, you will need to install [R](http://r-project.org) and [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/).
 
-Open the file `borror_algae_maps_shiny.Rproj` which should open RStudio
+Open the file `borror_algae_maps_shiny.Rproj` which should open RStudio. From here, open the file `app.R`.
 
 If you do not have the requisite libraries installed, run the following at the console prompt:
 
